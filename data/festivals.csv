@@ -1,0 +1,2 @@
+festival_id,name,date_range,location,template_path,font_paths
+pkp2025,Pukkelpop 2025,"July 31 - August 3, 2025",Belgium,assets/templates/Pukkelpop_Festival/SVG/pkp_template.svg,"assets/templates/Pukkelpop_Festival/Fonts/neutra-text-bold-5871e1605afa2.otf,assets/templates/Pukkelpop_Festival/Fonts/Montserrat-Bold.ttf"
