@@ -75,7 +75,18 @@ festiv-ai/
 
 ## **Quick Start**
 
-### **1. Installation**
+### **Option 1: Docker (Recommended for Consistency)**
+
+```bash
+# Install Docker Desktop first (see INSTALL_DOCKER.md)
+# Then run FestivAI with one command:
+
+docker compose up --build
+```
+
+**Benefits**: Exact environment, isolated LLM, persistent models, easy resuming next week.
+
+### **Option 2: Local Installation**
 
 ```bash
 # Clone repository

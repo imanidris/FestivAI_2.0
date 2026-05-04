@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Ollama LLM service
+  ollama:
+    image: ollama/ollama:latest
+    container_name: festiv-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_ORIGINS=*
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # FestivAI application
+  festiv-ai:
+    build: .
+    container_name: festiv-ai
+    volumes:
+      # Mount output directory to preserve generated posters
+      - ./output:/app/output
+      # Mount data directory for easy updates
+      - ./data:/app/data
+      # Mount assets for easy updates
+      - ./assets:/app/assets
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - PYTHONPATH=/app
+    # Override for development - comment out for production runs
+    # command: tail -f /dev/null  # Keep container running for debugging
+
+volumes:
+  ollama_data:
