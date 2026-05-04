@@ -42,7 +42,7 @@ Step 5: Rendering & Export  → Convert to PNG + generate manifest
 
 ```
 festiv-ai/
-├── README.md                    ← You are here
+├── README.md                    
 ├── requirements.txt             ← Python dependencies
 ├── .gitignore                   ← Git exclusions
 │
@@ -63,14 +63,14 @@ festiv-ai/
 │   ├── manifest.csv             ← Generation tracking
 │   └── copy_cache.json          ← LLM response cache
 │
-└── src/                         ← Clean 5-step pipeline
-    ├── main.py                  ← CLI + orchestration
+└── src/                         
+    ├── main.py                  ← Main Program File 
     ├── config.py                ← Centralized configuration
     ├── step1_personalization.py ← Data loading + matching
     ├── step2_validation.py      ← Asset + template validation
     ├── step3_content_generation.py ← AI copy generation
     ├── step4_poster_assembly.py ← SVG template assembly
-    └── step5_rendering.py       ← PNG rendering + manifest
+    └── step5_rendering.py       ← PNG Exporting
 ```
 
 ## **Quick Start**
@@ -150,7 +150,7 @@ python -m src.main --help
 | `--max-words` | Copy length limit | `12` |
 | `--variants` | Copy variants per poster | `3` |
 
-## 📊 **Data Schemas**
+## **Data Schemas**
 
 ### **festivals.csv**
 ```csv
@@ -170,7 +170,7 @@ user_id,name,favorite_artist_ids,preferred_location
 u001,Elena,"mau_p,salute,levity","Spain,Belgium,France"
 ```
 
-## 🎨 **Template System**
+## **Template System**
 
 FestivAI uses **SVG templates** with intelligent zone detection:
 
@@ -182,7 +182,7 @@ FestivAI uses **SVG templates** with intelligent zone detection:
 
 Templates support CSS styling and preserve all design attributes.
 
-## 📈 **Scaling & Customization**
+## **Scaling & Customization**
 
 ### **Adding New Festivals**
 1. Add SVG template to `assets/templates/{festival_name}/`
@@ -201,14 +201,14 @@ Modify `step3_content_generation.py` to:
 - Add genre-specific copy styles
 - Integrate with marketing APIs
 
-## 🧪 **Current Demo Data**
+## **Current Demo Data**
 
 - **1 Festival**: Pukkelpop 2025 (Belgium)
 - **45 Artist Performances**: Across July 31 - August 3
 - **18 Users**: From diverse global locations
 - **77 Poster Combinations**: Average 4.3 posters per user
 
-## 🛠️ **Development**
+## **Development**
 
 ### **Testing Individual Steps**
 ```python
@@ -230,7 +230,7 @@ run_pipeline(
 )
 ```
 
-## 🎯 **Use Cases**
+## **Use Cases**
 
 - **Festival Marketing**: Personalized social media campaigns
 - **Email Marketing**: Custom poster attachments per user
@@ -238,7 +238,8 @@ run_pipeline(
 - **Artist Promotion**: Cross-promotional content across multiple festivals
 - **Agency Workflows**: Automated asset generation for music industry clients
 
-## 📋 **Requirements**
+
+## **Requirements**
 
 - **Python**: 3.11+
 - **LLM**: Ollama + llama3.1:8b (or compatible model)
@@ -246,20 +247,14 @@ run_pipeline(
 - **Templates**: SVG files with placeholder zones
 - **Assets**: Artist photos (PNG/JPG)
 
-## 🤝 **Contributing**
+## **Team Memebers**
 
-The modular 5-step architecture makes contributions straightforward:
 
-1. **Step improvements**: Enhance individual pipeline steps
-2. **Template support**: Add new festival template formats
-3. **LLM integration**: Support additional AI providers
-4. **Data connectors**: Add APIs for live festival/artist data
-5. **Output formats**: Support additional export formats
+- Iman Ahmed
+- Daniela Sierra
+- Maria Margarida Lira Gomes de Almeida Belo
+- Felipe Lopez Mantilla
+- Michal Misanko
+- Ketan Sharma
 
-## 📜 **License**
 
-MIT License - see LICENSE file for details.
-
----
-
-**Built for music industry professionals who need scalable, personalized marketing assets at festival scale.** 🎵✨
