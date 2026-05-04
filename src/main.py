@@ -1,6 +1,8 @@
 """
 FestivAI Main Pipeline
 Orchestrates the complete 5-step poster generation process.
+
+run: python -m src.main
 """
 from __future__ import annotations
 
@@ -43,9 +45,9 @@ def run_pipeline(
     manifest_path = config.MANIFEST_CSV
     copy_cache_path = config.COPY_CACHE
 
-    print("🎵 FestivAI Pipeline Starting...")
-    print(f"   📂 Data directory: {data_dir}")
-    print(f"   📁 Output directory: {output_dir}")
+    print(" FestivAI Pipeline Starting...")
+    print(f"    Data directory: {data_dir}")
+    print(f"    Output directory: {output_dir}")
     print("")
 
     try:
@@ -53,7 +55,7 @@ def run_pipeline(
         matches, personalization_summary = run_step1(data_dir)
 
         if not matches:
-            print("❌ No personalized matches found. Check your data and try again.")
+            print(" No personalized matches found. Check your data and try again.")
             return
 
         print("")
@@ -63,11 +65,11 @@ def run_pipeline(
             validation_results = run_step2(matches, project_root)
 
             if not validation_results.get("ready_for_generation", False):
-                print("❌ Validation failed. Fix missing assets before continuing.")
+                print(" Validation failed. Fix missing assets before continuing.")
                 print("   Use --skip-validation to bypass validation checks.")
                 return
         else:
-            print("⚠️  Step 2: Validation skipped (--skip-validation flag)")
+            print("  Step 2: Validation skipped (--skip-validation flag)")
 
         print("")
 
@@ -82,7 +84,7 @@ def run_pipeline(
         )
 
         if not copy_dict:
-            print("❌ No copy generated. Check LLM connection and try again.")
+            print(" No copy generated. Check LLM connection and try again.")
             return
 
         print("")
@@ -91,7 +93,7 @@ def run_pipeline(
         assembled_posters = run_step4(matches, copy_dict, project_root)
 
         if not assembled_posters:
-            print("❌ No posters assembled. Check templates and assets.")
+            print(" No posters assembled. Check templates and assets.")
             return
 
         print("")
@@ -108,18 +110,18 @@ def run_pipeline(
 
         if render_results["status"] == "completed":
             print("")
-            print("🎉 FestivAI pipeline completed successfully!")
-            print(f"   🎨 Generated {render_results['total_rendered']} personalized posters")
-            print(f"   📁 Output: {render_results['output_directory']}")
-            print(f"   📋 Manifest: {render_results['manifest_path']}")
+            print(" FestivAI pipeline completed successfully!")
+            print(f"   Generated {render_results['total_rendered']} personalized posters")
+            print(f"   Output: {render_results['output_directory']}")
+            print(f"   Manifest: {render_results['manifest_path']}")
         else:
-            print("❌ Pipeline failed during rendering step.")
+            print(" Pipeline failed during rendering step.")
 
     except KeyboardInterrupt:
-        print("\n⏹️  Pipeline interrupted by user")
+        print("\n Pipeline interrupted by user")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Pipeline failed: {e}")
+        print(f" Pipeline failed: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
